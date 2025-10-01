@@ -39,12 +39,25 @@ const Routing: Routes = [
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
   {
+    path: 'configuraciones',
+    loadChildren: () => import('../modules/configuration/configuration.module').then((m) => m.ConfigurationModule),
+  },
+  {
     path: 'apps/roles',
     loadChildren: () => import('./role/role.module').then((m) => m.RoleModule),
   },
   {
     path: 'apps/permissions',
     loadChildren: () => import('./permission/permission.module').then((m) => m.PermissionModule),
+  },
+  //Mis modulos
+  {
+    path: 'roles',
+    loadChildren: () => import('../modules/roles/roles.module').then((m) => m.RolesModule),
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('../modules/users/users.module').then((m) => m.UsersModule),
   },
   {
     path: '',

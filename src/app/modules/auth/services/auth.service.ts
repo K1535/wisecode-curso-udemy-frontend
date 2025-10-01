@@ -33,6 +33,8 @@ export class AuthService implements OnDestroy {
     this.currentUserSubject.next(user);
   }
 
+  token:any;
+  user:any;
   constructor(
     private authHttpService: AuthHTTPService,
     private router: Router,
@@ -65,21 +67,22 @@ export class AuthService implements OnDestroy {
   }
 
   logout() {
-    localStorage.removeItem(this.authLocalStorageToken);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.router.navigate(['/auth/login'], {
       queryParams: {},
     });
   }
 
-  getUserByToken(): Observable<UserType> {
+  getUserByToken(): Observable<any> {
     const auth = this.getAuthFromLocalStorage();
-    if (!auth || !auth.authToken) {
+    if (!auth ) {
       return of(undefined);
     }
 
     this.isLoadingSubject.next(true);
-    return this.authHttpService.getUserByToken(auth.authToken).pipe(
-      map((user: UserType) => {
+    return of(auth).pipe(
+      map((user: any) => {
         if (user) {
           this.currentUserSubject.next(user);
         } else {
@@ -127,12 +130,15 @@ export class AuthService implements OnDestroy {
 
   private getAuthFromLocalStorage(): AuthModel | undefined {
     try {
-      const lsValue = localStorage.getItem(this.authLocalStorageToken);
+      const lsValue = localStorage.getItem('user');
       if (!lsValue) {
         return undefined;
       }
 
-      const authData = JSON.parse(lsValue);
+      this.token  = localStorage.getItem('token');
+      this.user = JSON.parse(lsValue);
+
+      const authData = this.user;
       return authData;
     } catch (error) {
       console.error(error);
