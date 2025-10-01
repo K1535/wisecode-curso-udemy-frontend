@@ -4,6 +4,27 @@
     <div class="modal-header" id="kt_modal_add_user_header">
         <!--begin::Modal title-->
         <h2 class="fw-bolder">Add Sucursal</h2>
+
+
+        <h2 class="fw-bolder">Add Sucursal</h2>
+
+
+        <h2 class="fw-bolder">Add Sucursal</h2>
+
+
+        <h2 class="fw-bolder">Add Sucursal</h2>
+
+
+        <h2 class="fw-bolder">Add Sucursal</h2>
+
+
+        <h2 class="fw-bolder">Add Sucursal</h2>
+
+
+        <h2 class="fw-bolder">Add Sucursal</h2>
+        <h2 class="fw-bolder">Add Role</h2>
+
+
         
         <!--end::Modal title-->
         <!--begin::Close-->
@@ -29,15 +50,26 @@
                 <!--begin::Input group-->
                 <div class="fv-row mb-7">
                     <!--begin::Label-->
+
                     <label class="required fw-bold fs-6 mb-2">Nombre de la Sucursal: (*) </label>
                     <!--end::Label-->
                     <!--begin::Input-->
                     <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Sucursal" [(ngModel)]="name" />
+
+
+                    <label class="required fw-bold fs-6 mb-2">Nombre del rol: </label>
+                    <!--end::Label-->
+                    <!--begin::Input-->
+                    <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Role" [(ngModel)]="name" />
+
+
+
                     <!--end::Input-->
                 </div>
 
                 <div class="fv-row mb-7">
                     <!--begin::Label-->
+
                     <label class="required fw-bold fs-6 mb-2">Direccion(Opcional): </label>
                     <textarea class="form-control form-control-solid"  
                     rows="3" 
@@ -45,7 +77,38 @@
                     placeholder="Direccion de la sucursal"></textarea>
                 </div>
 
-                
+
+
+
+                    <label class="required fw-bold fs-6 mb-2">Selecciona sus permisos: </label>
+                </div>
+
+                <div class="table-responsive w-100">
+                    <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_1">
+                        <thead>
+                            <tr class="text-left">
+                                <th>ROLE</th>
+                                <th>PERMISO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let PERMISSION of SIDEBAR;let i=index">
+                                <td>
+                                    {{PERMISSION.name}}
+                                </td>
+                                <td>
+                                    <ng-container *ngFor="let permiso of PERMISSION.permisos">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid py-1">
+                                            <input class="form-check-input" type="checkbox" value="1" name="permissions" (click)="addPermission(permiso.permiso)">
+                                                {{permiso.name}}
+                                        </div>
+                                    </ng-container>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
             <!--begin::Actions-->
             <div class="text-center pt-15">

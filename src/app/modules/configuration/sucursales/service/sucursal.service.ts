@@ -56,3 +56,39 @@ export class SucursalService {
     );
   }
 }
+
+  registerSucursal(data:any){
+        this.isLoadingSubject.next(true);
+        let headers = new HttpHeaders({'Authorization': 'Bearer '+ this.authservice.token});
+        let URL = URL_SERVICIOS+"/sucursales";
+        return this.http.post(URL, data,{headers:headers}).pipe(
+          finalize(() => this.isLoadingSubject.next(false))
+        );
+      }
+  
+      listSucursales(page = 1, search:string = ''){
+        this.isLoadingSubject.next(true);
+        let headers = new HttpHeaders({'Authorization': 'Bearer '+ this.authservice.token});
+        let URL = URL_SERVICIOS+"/sucursales?page="+page+"&search"+search;
+        return this.http.get(URL,{headers:headers}).pipe(
+          finalize(() => this.isLoadingSubject.next(false))
+        );
+      }
+      updateSucursal(ID_SUCURSAL:string, data:any){
+        this.isLoadingSubject.next(true);
+        let headers = new HttpHeaders({'Authorization': 'Bearer '+ this.authservice.token});
+        let URL = URL_SERVICIOS+"/sucursales"+ID_SUCURSAL;
+        return this.http.put(URL, data,{headers:headers}).pipe(
+          finalize(() => this.isLoadingSubject.next(false))
+        );
+      }
+      deleteSucursal(ID_SUCURSAL:string){
+        this.isLoadingSubject.next(true);
+        let headers = new HttpHeaders({'Authorization': 'Bearer '+ this.authservice.token});
+        let URL = URL_SERVICIOS+"/sucursales"+ID_SUCURSAL;
+        return this.http.delete(URL,{headers:headers}).pipe(
+          finalize(() => this.isLoadingSubject.next(false))
+        );
+      }
+  }
+

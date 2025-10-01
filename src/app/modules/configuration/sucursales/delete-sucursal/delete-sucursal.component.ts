@@ -1,7 +1,15 @@
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SucursalService } from '../service/sucursal.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+
+
+
+import { Component } from '@angular/core';
+
+
+
 
 @Component({
   selector: 'app-delete-sucursal',
