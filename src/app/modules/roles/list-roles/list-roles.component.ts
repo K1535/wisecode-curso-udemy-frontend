@@ -11,6 +11,7 @@ import { DeleteRolesComponent } from '../delete-roles/delete-roles.component';
   styleUrls: ['./list-roles.component.scss']
 })
 export class ListRolesComponent {
+  
   search:string = '';
   ROLES: any = [];
   isLoading$:any;
@@ -42,6 +43,7 @@ export class ListRolesComponent {
       this.ROLES.unshift(role);
     })
   }
+
   editRole(ROL:any){
     const modalRef = this.modalService.open(EditRolesComponent, {centered:true, size:'md'});
     modalRef.componentInstance.ROLE_SELECTED = ROL;
@@ -52,6 +54,7 @@ export class ListRolesComponent {
       }
     })
   }
+
   deleteRole(ROL:any){
     const modalRef = this.modalService.open(DeleteRolesComponent, {centered:true, size:'md'});
     modalRef.componentInstance.ROLE_SELECTED = ROL;

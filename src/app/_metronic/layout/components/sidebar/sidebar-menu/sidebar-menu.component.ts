@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarMenuComponent implements OnInit {
 
-  constructor() { }
+  user: any = { permissions: [] }; // inicializamos con un objeto vacío seguro
+
+  constructor(
+    public authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    // si el authService aún no tiene user, lo dejamos como objeto con permissions vacío
+    this.user = this.authService.user || { permissions: [] };
   }
 
+  showMenu(permisos: string[] = []): boolean {
+    // verificamos que existan permisos antes de usar includes
+    if (!this.user || !this.user.permissions) {
+      return false;
+    }
+    return permisos.some(permiso => this.user.permissions.includes(permiso));
+  }
 }
