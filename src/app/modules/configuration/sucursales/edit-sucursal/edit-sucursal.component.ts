@@ -6,7 +6,6 @@ import { SucursalService } from '../service/sucursal.service';
 
 
 
-import { Component } from '@angular/core';
 
 
 @Component({
