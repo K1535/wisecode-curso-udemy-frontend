@@ -33,13 +33,18 @@ export class ListsProvidersComponent {
   }
 
   listProviders(page = 1){
-    this.providersService.listProviders(page,this.search).subscribe((resp:any) => {
-      console.log(resp);
-      this.PROVIDERS = resp.providers;
-      this.totalPages = resp.total;
-      this.currentPage = page;
-    })
-  }
+  this.providersService.listProviders(page, this.search).subscribe((resp:any) => {
+    console.log('Respuesta del backend:', resp);
+    
+    this.PROVIDERS = resp.providers.map((PROVIDER:any) => {
+      console.log('PROVIDER.imagen:', PROVIDER.imagen); // <-- aquí ves qué llega
+      return PROVIDER;
+    });
+
+    this.totalPages = resp.total;
+    this.currentPage = page;
+  })
+}
 
   loadPage($event:any){
     this.listProviders($event);

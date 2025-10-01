@@ -32,13 +32,29 @@ export class ListProductCategorieComponent {
     this.listProductCategories();
   }
 
-  listProductCategories(page = 1){
-    this.productCategorieService.listProductCategories(page,this.search).subscribe((resp:any) => {
+  /* listProductCategories(page = 1){
+    this.listProductCategories.listProductCategories(page,this.search).subscribe((resp:any) => {
       console.log(resp);
       this.PRODUCT_CATEGORIES = resp.categories;
       this.totalPages = resp.total;
       this.currentPage = page;
     })
+  } */
+
+  listProductCategories(page = 1) {
+    this.productCategorieService
+      .listProductCategories(page, this.search)
+      .subscribe((resp: any) => {
+        console.log("Respuesta del backend:", resp);
+
+        this.PRODUCT_CATEGORIES = resp.categories.map((CATEGORY: any) => {
+          console.log("PROVIDER.imagen:", CATEGORY.imagen); 
+          return CATEGORY;
+        });
+
+        this.totalPages = resp.total;
+        this.currentPage = page;
+      });
   }
 
   loadPage($event:any){

@@ -5,54 +5,51 @@ import { URL_SERVICIOS } from 'src/app/config/config';
 import { AuthService } from 'src/app/modules/auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SucursalService {
-
   isLoading$: Observable<boolean>;
-  isLoadingSubject: BehaviorSubject<boolean>;
-  
-  constructor(
-    private http: HttpClient,
-    public authservice: AuthService,
-  ) {
+  private isLoadingSubject: BehaviorSubject<boolean>;
+
+  constructor(private http: HttpClient, public authservice: AuthService) {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
     this.isLoading$ = this.isLoadingSubject.asObservable();
   }
 
-  registerSucursal(data:any) {
-    this.isLoadingSubject.next(true);
-    let headers = new HttpHeaders({'Authorization': 'Bearer '+ this.authservice.token});
-    let URL = URL_SERVICIOS+"/sucursales";
-    return this.http.post(URL,data,{headers: headers}).pipe(
-      finalize(() => this.isLoadingSubject.next(false))
-    );
+  private getHeaders() {
+    return new HttpHeaders({
+      Authorization: 'Bearer ' + this.authservice.token,
+    });
   }
 
-  listSucursales(page = 1,search:string = ''){
+  registerSucursal(data: any) {
     this.isLoadingSubject.next(true);
-    let headers = new HttpHeaders({'Authorization': 'Bearer '+ this.authservice.token});
-    let URL = URL_SERVICIOS+"/sucursales?page="+page+"&search="+search;
-    return this.http.get(URL,{headers: headers}).pipe(
-      finalize(() => this.isLoadingSubject.next(false))
-    );
+    return this.http
+      .post(URL_SERVICIOS + '/sucursales', data, { headers: this.getHeaders() })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
 
-  updateSucursal(ID_SUCURSAL:string,data:any) {
+  listSucursales(page = 1, search: string = '') {
     this.isLoadingSubject.next(true);
-    let headers = new HttpHeaders({'Authorization': 'Bearer '+ this.authservice.token});
-    let URL = URL_SERVICIOS+"/sucursales/"+ID_SUCURSAL;
-    return this.http.put(URL,data,{headers: headers}).pipe(
-      finalize(() => this.isLoadingSubject.next(false))
-    );
+    const url = `${URL_SERVICIOS}/sucursales?page=${page}&search=${search}`;
+    return this.http
+      .get(url, { headers: this.getHeaders() })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
 
-  deleteSucursal(ID_SUCURSAL:string) {
+  updateSucursal(ID_SUCURSAL: string, data: any) {
     this.isLoadingSubject.next(true);
-    let headers = new HttpHeaders({'Authorization': 'Bearer '+ this.authservice.token});
-    let URL = URL_SERVICIOS+"/sucursales/"+ID_SUCURSAL;
-    return this.http.delete(URL,{headers: headers}).pipe(
-      finalize(() => this.isLoadingSubject.next(false))
-    );
+    const url = `${URL_SERVICIOS}/sucursales/${ID_SUCURSAL}`;
+    return this.http
+      .put(url, data, { headers: this.getHeaders() })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  deleteSucursal(ID_SUCURSAL: string) {
+    this.isLoadingSubject.next(true);
+    const url = `${URL_SERVICIOS}/sucursales/${ID_SUCURSAL}`;
+    return this.http
+      .delete(url, { headers: this.getHeaders() })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
 }

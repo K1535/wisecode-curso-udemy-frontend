@@ -84,11 +84,11 @@
                             <tr>
                                 <td>
                                     <div class="d-flex">
-                                        <div class="symbol symbol-50px me-5" *ngIf="PROVIDER.imagen">
-                                            <img [src]="PROVIDER.imagen" class="" alt="">
+                                            <div class="symbol symbol-50px me-5" *ngIf="PROVIDER.imagen">
+                                                <img [src]="PROVIDER.imagen" class="" [alt]="PROVIDER.full_name">
+                                            </div>
+                                            <p>{{ PROVIDER.full_name }}</p> 
                                         </div>
-                                        <p>{{ PROVIDER.full_name }}</p> 
-                                    </div>
                                 </td>
                                 
                                 <td>

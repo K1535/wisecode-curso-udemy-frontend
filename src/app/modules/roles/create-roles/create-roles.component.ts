@@ -16,7 +16,9 @@ export class CreateRolesComponent {
   isLoading : any;
   permisions : any = [];
 
-  constructor(public modal:NgbActiveModal, public roleService: RolesService, public toast: ToastrService,){
+  constructor(public modal:NgbActiveModal,
+    public roleService: RolesService,
+    public toast: ToastrService,){
      
   }
   ngOnInit():void {
