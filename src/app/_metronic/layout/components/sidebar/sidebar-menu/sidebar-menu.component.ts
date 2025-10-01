@@ -20,10 +20,17 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   showMenu(permisos: string[] = []): boolean {
+    if (this.isRole()) {
+      return true; // Si es Super Admin, mostramos todo
+    }
     // verificamos que existan permisos antes de usar includes
     if (!this.user || !this.user.permissions) {
       return false;
     }
     return permisos.some(permiso => this.user.permissions.includes(permiso));
+  }
+
+  isRole(): boolean {
+    return this.user.role_name == 'Super Admin';
   }
 }

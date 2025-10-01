@@ -47,6 +47,10 @@ export const SIDEBAR:any = [
           permiso: 'register_product',
         },
         {
+          name:'Listado',
+          permiso: 'list_prodcut',
+        },
+        {
           name:'Editar',
           permiso: 'edit_product',
         },
@@ -126,6 +130,10 @@ export const SIDEBAR:any = [
           permiso: 'register_proforma',
         },
         {
+          name:'Listado',
+          permiso: 'list_proforma',
+        },
+        {
           name:'Editar',
           permiso: 'edit_proforma',
         },
@@ -161,6 +169,10 @@ export const SIDEBAR:any = [
           permiso: 'register_compra',
         },
         {
+          name:'Listado',
+          permiso: 'list_compra',
+        },
+        {
           name:'Editar',
           permiso: 'edit_compra',
         },
@@ -176,6 +188,10 @@ export const SIDEBAR:any = [
         {
           name:'Registrar',
           permiso: 'register_transporte',
+        },
+        {
+          name:'Listado',
+          permiso: 'list_transporte',
         },
         {
           name:'Editar',
