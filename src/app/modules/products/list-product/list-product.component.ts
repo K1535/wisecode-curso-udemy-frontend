@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ProductsService } from '../service/products.service';
 import { DeleteProductComponent } from '../delete-product/delete-product.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { URL_SERVICIOS } from 'src/app/config/config';
+import { ImportProductsComponent } from '../import-products/import-products.component';
 
 @Component({
   selector: 'app-list-product',
@@ -30,6 +32,9 @@ export class ListProductComponent {
   almacen_warehouse:string = '';
   client_segment_price_multiple :string = '';
   unit_warehouse:string = '';
+  state_stock:string = '';
+  num_products_agotado:number = 0;
+  num_products_por_agotar:number = 0;
   constructor(
     public modalService: NgbModal,
     public productService: ProductsService
@@ -56,11 +61,14 @@ export class ListProductComponent {
         client_segment_price_multiple: this.client_segment_price_multiple,
         almacen_warehouse: this.almacen_warehouse,
         unit_warehouse: this.unit_warehouse,
+        state_stock: this.state_stock,
       }
     this.productService.listProducts(page,data).subscribe((resp:any) => {
       console.log(resp);
       this.PRODUCTS = resp.products.data;
       this.totalPages = resp.total;
+      this.num_products_agotado = resp.num_products_agotado;
+      this.num_products_por_agotar = resp.num_products_por_agotar;
       this.currentPage = page;
     })
   }
@@ -74,6 +82,7 @@ export class ListProductComponent {
     this.client_segment_price_multiple= '';
     this.almacen_warehouse= '';
     this.unit_warehouse = '';
+    this.state_stock = '';
     this.listProducts();
   }
   configAll(){
@@ -123,7 +132,14 @@ export class ListProductComponent {
   loadPage($event:any){
     this.listProducts($event);
   }
-
+  selectAgotado(){
+    this.state_stock = '3';
+    this.listProducts();
+  }
+  selectPorAgotado(){
+    this.state_stock = '2';
+    this.listProducts();
+  }
   deleteProduct(PRODUCT:any){
     const modalRef = this.modalService.open(DeleteProductComponent,{centered:true, size: 'md'});
     modalRef.componentInstance.PRODUCT_SELECTED = PRODUCT;
@@ -136,4 +152,39 @@ export class ListProductComponent {
     })
   }
 
+  downloadProducts(){
+    let LINK = "";
+    if(this.product_categorie_id){
+      LINK += "&product_categorie_id="+this.product_categorie_id;
+    }
+    if(this.disponibilidad){
+      LINK += "&disponibilidad="+this.disponibilidad;
+    }
+    if(this.search){
+      LINK += "&search="+this.search;
+    }
+    if(this.sucursale_price_multiple){
+      LINK += "&sucursale_price_multiple="+this.sucursale_price_multiple;
+    }
+    if(this.client_segment_price_multiple){
+      LINK += "&client_segment_price_multiple="+this.client_segment_price_multiple;
+    }
+    if(this.almacen_warehouse){
+      LINK += "&almacen_warehouse="+this.almacen_warehouse;
+    }
+    if(this.unit_warehouse){
+      LINK += "&unit_warehouse="+this.unit_warehouse;
+    }
+    if(this.state_stock){
+      LINK += "&state_stock="+this.state_stock;
+    }
+    window.open(URL_SERVICIOS+"/excel/export-products?k=1"+LINK,"_blank");
+  }
+
+  importProducts(){
+    const modalRef = this.modalService.open(ImportProductsComponent,{centered:true, size: 'md'});
+    modalRef.componentInstance.ImportProductD.subscribe((prod:any) => {
+      this.listProducts();
+    })
+  }
 }

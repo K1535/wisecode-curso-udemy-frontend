@@ -415,9 +415,12 @@ export class EditProductComponent {
     formData.append("length",this.length+"");//NUEVO
     
     formData.append("umbral",this.umbral+"");
-    formData.append("umbral_unit_id",this.umbral_unit_id);
-
-    formData.append("provider_id",this.provider_id);
+    if(this.umbral_unit_id){
+      formData.append("umbral_unit_id",this.umbral_unit_id);
+    }
+    if(this.provider_id){
+      formData.append("provider_id",this.provider_id);
+    }
 
     formData.append("specifications",JSON.stringify(this.ESPECIFICACIONES));
     

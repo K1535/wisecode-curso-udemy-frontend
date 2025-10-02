@@ -15,6 +15,7 @@ import { EditWalletPriceProductComponent } from './wallet/edit-wallet-price-prod
 import { DeleteWalletPriceProductComponent } from './wallet/delete-wallet-price-product/delete-wallet-price-product.component';
 import { EditWarehouseProductComponent } from './warehouse/edit-warehouse-product/edit-warehouse-product.component';
 import { DeleteWarehouseProductComponent } from './warehouse/delete-warehouse-product/delete-warehouse-product.component';
+import { ImportProductsComponent } from './import-products/import-products.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { DeleteWarehouseProductComponent } from './warehouse/delete-warehouse-pr
     DeleteWalletPriceProductComponent,
     EditWarehouseProductComponent,
     DeleteWarehouseProductComponent,
+    ImportProductsComponent,
   ],
   imports: [
     CommonModule,

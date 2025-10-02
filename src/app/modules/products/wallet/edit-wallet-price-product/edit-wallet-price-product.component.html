@@ -3,7 +3,7 @@
     <!--begin::Modal header-->
     <div class="modal-header" id="kt_modal_add_user_header">
         <!--begin::Modal title-->
-        <h2 class="fw-bolder">Edit Sucursale Product: {{ WALLETS_PROD.sucursale.name }}</h2>
+        <h2 class="fw-bolder">Edit Sucursale Product: {{ WALLETS_PROD.sucursale ? WALLETS_PROD.sucursale.name : WALLETS_PROD.unit.name }}</h2>
         
         <!--end::Modal title-->
         <!--begin::Close-->
