@@ -1,5 +1,6 @@
 import { environment } from "src/environments/environment";
 
+
 export const URL_BACKEND = environment.URL_BACKEND;
 export const URL_SERVICIOS = environment.URL_SERVICIOS;
 export const URL_FRONTED = environment.URL_FRONTED;
@@ -39,6 +40,23 @@ export const SIDEBAR:any = [
         }
       ]
     },
+    // {
+    //   'name': 'Sucursales',
+    //   'permisos': [
+    //     {
+    //       name:'Registrar',
+    //       permiso: 'register_sucursales',
+    //     },
+    //     {
+    //       name:'Editar',
+    //       permiso: 'edit_sucursales',
+    //     },
+    //     {
+    //       name:'Eliminar',
+    //       permiso: 'delete_sucursales',
+    //     }
+    //   ]
+    // },
     {
       'name': 'Productos',
       'permisos': [
@@ -48,7 +66,7 @@ export const SIDEBAR:any = [
         },
         {
           name:'Listado',
-          permiso: 'list_prodcut',
+          permiso: 'list_product',
         },
         {
           name:'Editar',
@@ -172,6 +190,7 @@ export const SIDEBAR:any = [
           name:'Listado',
           permiso: 'list_compra',
         },
+        
         {
           name:'Editar',
           permiso: 'edit_compra',
@@ -230,4 +249,4 @@ export const SIDEBAR:any = [
         },
       ]
     },
-  ];
+];
