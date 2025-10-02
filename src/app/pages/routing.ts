@@ -65,6 +65,46 @@ const Routing: Routes = [
     loadChildren: () => import('../modules/products/products.module').then((m) => m.ProductsModule),
   },
   {
+    path: 'clientes',
+    loadChildren: () => import('../modules/clients/clients.module').then((m) => m.ClientsModule),
+  },
+  /* {
+    path: 'proformas',
+    loadChildren: () => import('../modules/proformas/proformas.module').then((m) => m.ProformasModule),
+  },
+  {
+    path: 'caja',
+    loadChildren: () => import('../modules/cajas/cajas.module').then((m) => m.CajasModule),
+  },
+  {
+    path: 'cronograma-de-envios',
+    loadChildren: () => import('../modules/cronograma-proformas/cronograma-proformas.module').then((m) => m.CronogramaProformasModule),
+  },
+  {
+    path: 'comisiones-asesores',
+    loadChildren: () => import('../modules/comissions/comissions.module').then((m) => m.ComissionsModule),
+  },
+  {
+    path: 'compras',
+    loadChildren: () => import('../modules/purchase/purchase.module').then((m) => m.PurchaseModule),
+  },
+  {
+    path: 'transportes',
+    loadChildren: () => import('../modules/transports/transports.module').then((m) => m.TransportsModule),
+  },
+  {
+    path: 'conversiones',
+    loadChildren: () => import('../modules/conversions/conversions.module').then((m) => m.ConversionsModule),
+  },
+  {
+    path: 'despacho',
+    loadChildren: () => import('../modules/despacho/despacho.module').then((m) => m.DespachoModule),
+  },
+  {
+    path: 'kardex',
+    loadChildren: () => import('../modules/kardex/kardex.module').then((m) => m.KardexModule),
+  }, */
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',
