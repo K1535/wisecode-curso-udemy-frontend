@@ -39,10 +39,6 @@ const Routing: Routes = [
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
   {
-    path: 'configuraciones',
-    loadChildren: () => import('../modules/configuration/configuration.module').then((m) => m.ConfigurationModule),
-  },
-  {
     path: 'apps/roles',
     loadChildren: () => import('./role/role.module').then((m) => m.RoleModule),
   },
@@ -50,7 +46,7 @@ const Routing: Routes = [
     path: 'apps/permissions',
     loadChildren: () => import('./permission/permission.module').then((m) => m.PermissionModule),
   },
-  //Mis modulos
+  // MIS MODULOS localhost:4200/roles/list
   {
     path: 'roles',
     loadChildren: () => import('../modules/roles/roles.module').then((m) => m.RolesModule),
@@ -58,6 +54,15 @@ const Routing: Routes = [
   {
     path: 'usuarios',
     loadChildren: () => import('../modules/users/users.module').then((m) => m.UsersModule),
+  },
+  // MIS MODULOS localhost:4200/configuraciones/sucursales/list
+  {
+    path: 'configuraciones',
+    loadChildren: () => import('../modules/configuration/configuration.module').then((m) => m.ConfigurationModule),
+  },
+  {
+    path: 'productos',
+    loadChildren: () => import('../modules/products/products.module').then((m) => m.ProductsModule),
   },
   {
     path: '',
