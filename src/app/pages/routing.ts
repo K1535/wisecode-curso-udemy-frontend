@@ -68,11 +68,11 @@ const Routing: Routes = [
     path: 'clientes',
     loadChildren: () => import('../modules/clients/clients.module').then((m) => m.ClientsModule),
   },
-  /* {
+   {
     path: 'proformas',
     loadChildren: () => import('../modules/proformas/proformas.module').then((m) => m.ProformasModule),
   },
-  {
+  /*{
     path: 'caja',
     loadChildren: () => import('../modules/cajas/cajas.module').then((m) => m.CajasModule),
   },
