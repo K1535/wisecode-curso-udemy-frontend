@@ -72,7 +72,7 @@ const Routing: Routes = [
     path: 'proformas',
     loadChildren: () => import('../modules/proformas/proformas.module').then((m) => m.ProformasModule),
   },
-  /*{
+  {
     path: 'caja',
     loadChildren: () => import('../modules/cajas/cajas.module').then((m) => m.CajasModule),
   },
@@ -80,7 +80,7 @@ const Routing: Routes = [
     path: 'cronograma-de-envios',
     loadChildren: () => import('../modules/cronograma-proformas/cronograma-proformas.module').then((m) => m.CronogramaProformasModule),
   },
-  {
+  /*{
     path: 'comisiones-asesores',
     loadChildren: () => import('../modules/comissions/comissions.module').then((m) => m.ComissionsModule),
   },
